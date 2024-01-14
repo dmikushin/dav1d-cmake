@@ -654,6 +654,8 @@ target_include_directories(dav1d PRIVATE ${LIBDAV1D_INCLUDE_DIRS_PRIV})
 target_include_directories(dav1d PUBLIC ${LIBDAV1D_INCLUDE_DIRS})
 target_compile_definitions(dav1d PRIVATE ${TEMP_COMPILE_DEFS} ${API_EXPORT_DEFS})
 
+add_library(dav1d::dav1d ALIAS dav1d)
+
 if(STACKREALIGN_FLAG)
     set_source_files_properties(${LIBDAV1D_ENTRYPOINT_SOURCES} PROPERTIES COMPILE_FLAGS ${STACKREALIGN_FLAG})
 endif()
