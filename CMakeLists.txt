@@ -342,7 +342,7 @@ if(ARCH_X86)
             endif()
         endif()
     endif()
-    
+
     # Stack alignment flags are for the C compiler only
     # (and not for NASM, which does not support them).
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${STACKALIGN_FLAG} ${STACKREALIGN_FLAG}")
@@ -664,6 +664,10 @@ if(NOT WIN32)
     set_target_properties(dav1d PROPERTIES SOVERSION "${DAV1D_API_VERSION_MAJOR}")
 else()
     set_target_properties(dav1d PROPERTIES PREFIX "lib")
+endif()
+
+if (NOT ("x${CMAKE_DL_LIBS}" STREQUAL "x"))
+    target_link_libraries(dav1d ${CMAKE_DL_LIBS})
 endif()
 
 if(NOT HAS_STDATOMIC)
